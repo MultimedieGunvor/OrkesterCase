@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="da">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tranbjerg Philharmonic</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <h1>Tranbjerg Philharmonic</h1>
+    <div class="header">
+        <div>
+            <button type="button" class="button" id="addMusicianButton">Tilføj musiker</button>
+            <button type="button" class="button" id="showAllMusiciansButton">Vis hele orkestret</button>
+        </div>
+        <form id="idSearchForm">
+            <input type="search" id="memberIdField" class="inputField" placeholder="Søg efter medlems-id" required>
+            <button type="submit" class="button">Søg</button>
+        </form>
+    </div>
+
+    <!-- Tilføj musiker -->
+    <dialog id="musicianDialog">
+        <form method="dialog" id="musicianDialogForm">
+            <fieldset>
+                <legend>Tilføj ny musiker</legend>
+                <label for="idfield">Medlems-ID:</label><input type="text" class="inputField dialogField" id="idfield" placeholder="Indtast medlems-ID" required>
+
+                <label for="firstnamefield">Fornavn:</label><input type="text" class="inputField dialogField" id="firstnamefield" placeholder="Indtast fornavn" required>
+
+                <label for="lastnamefield">Efternavn:</label><input type="text" class="inputField dialogField" id="lastnamefield" placeholder="Indtast efternavn" required>
+
+                <label for="instrumentfield">Instrument:</label><input type="text" class="inputField dialogField" id="instrumentfield" placeholder="Indtast instrument" required>
+
+                <label for="roadfield">Vejnavn:</label><input type="text" class="inputField dialogField" id="roadfield" placeholder="Indtast vejnavn" required>
+
+                <label for="housenumberfield">Husnummer:</label><input type="text" class="inputField dialogField" id="housenumberfield" placeholder="Indtast husnummer" required>
+
+                <label for="seniorityfield">Anciennitet:</label><input type="number" class="inputField dialogField" id="seniorityfield" placeholder="Indtast anciennitet" required>
+
+                <br><br>
+                <div class="dialogBtnsPanel">
+                    <button type="button" id="cancelButton" class="button">Fortryd</button>
+                    <button type="submit" id="saveButton" class="button">Gem</button>
+                </div>
+            </fieldset>
+        </form>
+    </dialog>
+    
+    <!-- Fjern musiker -->
+    <dialog id="confirmDialog">
+        <form method="dialog" id="confirmDialogForm">
+            <fieldset>
+                <legend>Fjern musiker</legend>
+                Vil du fjerne denne musiker?
+                <br><br>
+                <div class="dialogBtnsPanel">
+                    <button type="submit" class="button">Ja</button>
+                    <button type="button" class="button" id="cancelConfirmBtn">Nej</button>
+                </div>
+            </fieldset>
+        </form>
+    </dialog>
+
+    <!-- Skjult felt -->
+    <form>
+        <input type="hidden" id="hiddenIdField">
+    </form>
+
+    <div id="searchResult"></div>  
+    <div id="snackbar">Besked følger senere</div>
+
+    <script type="module">
+        import Model from "./model.js"
+        import Controller from "./controller.js"
+        import View from "./view.js"
+
+        window.onload = function() {
+            const model = new Model();
+            const controller = new Controller();
+            const view = new View(controller);
+            controller.initialize(model,view);
+        }
+    </script>
+
+</body>
+</html>
